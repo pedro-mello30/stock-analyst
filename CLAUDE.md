@@ -1,52 +1,28 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Claude Code when working in this repository.
 
 ## Project Overview
+A specialized environment for structured financial analysis of SEC filings. The project currently focuses on analyzing NVIDIA using its 2025-Q3 10-Q filing.
 
-This is a Financial Analysis Knowledge Base focused on SEC filing analysis. The primary purpose is to provide structured frameworks and skills for analyzing company financial statements, with current emphasis on income statement (P&L) analysis.
+## Directory Structure
+- `.claude/skills/`: Domain-specific analysis frameworks and automation logic.
+- `companies/`: Input data (SEC filings), analysis reports (MD), and output visualizations (charts).
+  - `nvidia/`: Active analysis target.
 
-## Architecture
+## Analysis Skills
+The workspace leverages four primary skills located in `.claude/skills/`:
+1. **Income Statement Analysis**: 7-step P&L evaluation framework.
+2. **Balance Sheet Analysis**: 7-step financial health and solvency framework.
+3. **Cash Flow Analysis**: 5-step methodology for understanding cash generation.
+4. **Financial Charts**: Python-based plotting system for Sankey, Waterfall, Bar, and Line charts.
 
-**Skill-Based Structure**: All financial analysis knowledge is organized as Claude Skills under `.claude/skills/`:
+## Workflow Patterns
+1. **Data Ingestion**: Place SEC PDFs in `companies/[ticker]/inputs/sec-filings/`.
+2. **Analysis**: Execute the structured analysis steps from the relevant skill.
+3. **Visualization**: Use the `financial-charts` skill to generate supporting visual evidence.
 
-```
-.claude/skills/
-└── income-statement-analysis/
-    ├── SKILL.md              # 7-step analysis workflow
-    └── references/
-        ├── analysis-framework.md  # Comprehensive analysis checklist
-        └── metrics-formulas.md    # Financial metrics with benchmarks
-```
-
-**Reference Data**: `companies/nvidia/inputs/sec-filings/10-q/2025-q3_form-10-q_oct26.pdf` provides a real SEC 10-Q filing example for testing analysis workflows.
-
-## Using the Income Statement Analysis Skill
-
-The skill triggers automatically when analyzing income statements, P&L statements, margins, revenue, or expense breakdowns. It follows a structured 7-step workflow:
-
-1. Revenue & Growth Analysis
-2. Gross Margin Evaluation
-3. Operating Expenses Breakdown
-4. Operating Margin Assessment
-5. Time-Based Analysis (QoQ/YoY)
-6. Competitive Benchmarking
-7. GAAP vs Non-GAAP Reconciliation
-
-Reference files provide detailed checklists (`analysis-framework.md`) and metric formulas with industry benchmarks (`metrics-formulas.md`).
-
-## Key Financial Metrics
-
-Core margins tracked: Gross Margin, Operating Margin, Net Margin. Industry benchmarks are documented for Amazon, Microsoft, Google, and Costco as reference points.
-
-## Extending the Project
-
-Additional analysis skills (Balance Sheet, Cash Flow Statement) can follow the same pattern:
-- Create skill directory under `.claude/skills/`
-- Add `SKILL.md` with workflow steps
-- Add `references/` with supporting documentation
-
-## Notes
-
-- No build system currently configured (documentation-only project)
-- Archived Python analysis tools exist in git history under `archieve/SEC-Filings-Analysis/` if restoration is needed
+## Future Improvements
+- **Automated Extraction**: Develop scripts to parse tables directly from SEC PDFs into structured formats (JSON/CSV).
+- **Multi-Ticker Comparison**: Expand framework to handle parallel analysis of peer groups.
+- **Trend Database**: Implement a simple storage layer to track metrics across multiple quarters for historical trend analysis.
