@@ -1,0 +1,17 @@
+# Python
+.venv/
+.venv-*/
+venv/
+__pycache__/
+*.pyc
+
+# Local tool envs in this repo
+.venv-pdf/
+
+# Editors / IDE
+.vscode/
+.idea/
+
+# OS / temp
+.DS_Store
+*.tmp
